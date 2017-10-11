@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{1C0EF419-7A4C-594B-4224-D20ED98375E7}</ProjectGuid>
+    <ProjectGuid>{3F1D62F4-4E3F-74CB-6DD5-F32D3F15F69D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -51,11 +51,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Application\Scripts\AttackObjectController.cs" />
-     <Compile Include="Assets\Application\Scripts\DrawLineNoGravity.cs" />
-     <Compile Include="Assets\Application\Scripts\DrawPhysicsLine.cs" />
-     <Compile Include="Assets\Application\Scripts\InkController.cs" />
-     <Compile Include="Assets\Application\Scripts\LINEController.cs" />
+     <Compile Include="Assets\Application\Scripts\DrawLine\AttackObjectController.cs" />
+     <Compile Include="Assets\Application\Scripts\DrawLine\DrawLineNoGravity.cs" />
+     <Compile Include="Assets\Application\Scripts\DrawLine\DrawPhysicsLine.cs" />
+     <Compile Include="Assets\Application\Scripts\DrawLine\InkController.cs" />
+     <Compile Include="Assets\Application\Scripts\DrawLine\LINEController.cs" />
+     <Compile Include="Assets\Application\Scripts\EnemyController.cs" />
+     <Compile Include="Assets\Application\Scripts\GameController.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>

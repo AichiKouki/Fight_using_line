@@ -33,6 +33,20 @@ public class DrawPhysicsLine : MonoBehaviour
 	GameObject smallInk;
 	Vector3 endPos;
 
+	//線を描く範囲を制限する処理関連
+	//Rayを飛ばす
+	// 位置座標
+	private Vector3 position;
+	// スクリーン座標をワールド座標に変換した位置座標
+	private Vector3 screenToWorldPointPosition;
+	// rayが届く範囲
+	public float distance = 100f;
+
+	//制限の範囲にマウスがあるかどうかのフラグ
+	private bool ban=false;
+
+
+
 	void Start(){
 	}
 
@@ -57,6 +71,30 @@ public class DrawPhysicsLine : MonoBehaviour
 		//クリックしてる最中に呼ばれる
 		if(Input.GetMouseButton(0))
 		{
+			
+			//線を描ける範囲を制限するための処理
+			// クリックしたスクリーン座標をrayに変換
+			Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);//カメラからマウスのポジションにRayを飛ばす
+			// Rayの当たったオブジェクトの情報を格納する
+			RaycastHit hit = new RaycastHit ();
+			// Vector3でマウス位置座標を取得する
+			position = Input.mousePosition;
+			// Z軸修正
+			position.z = 10f;
+			// マウス位置座標をスクリーン座標からワールド座標に変換する
+			screenToWorldPointPosition = Camera.main.ScreenToWorldPoint (position);
+
+			// オブジェクトにrayが当たった時
+			if (Physics.Raycast (ray, out hit, distance)) {
+				// rayが当たったオブジェクトの名前を取得
+				string objectName = hit.collider.gameObject.name;//Collider2Dだと反応しないので、2Dゲームの場合は2Dオブジェクトでも3Dのようにこライダーを使う
+				//Rayに当たったオブジェクトによって、動かすオブジェクとを変更する。
+				if (objectName == "range_draw_unavailable") {
+					ban = true;
+					return;
+				}
+			}
+
 			Vector3 startPos = touchPos;
 			endPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);//一瞬しかタップしなかった時の処理をしたいので、勝手に上で宣言した
 			endPos.z=0;
